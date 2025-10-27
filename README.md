@@ -76,19 +76,6 @@ JSON format with question keys: `{image_id}_{object_id}_{question_type}_{pos/neg
 - Relation: `rel1_1pos`, `rel1_2neg`, ...
 
 ## GhostConsistencyScore Metric
-
-The GCS uses exponential decay to penalize incorrect predictions:
-
-```
-For each object:
-  GCS = 1 - (sum_i(num_incorrect) / sum_i(total_questions))
-
-Where:
-  sum_i(n) = 1 + 1/2 + 1/4 + 1/8 + ... (sum of 1/2^j for j=0 to n-1)
-```
-
-**Intuition:** First errors are weighted more heavily than later ones. If a model gets the first questions wrong, it fundamentally misunderstands the concept.
-
 **Categories:**
 - **Objects GCS**: Consistency on object presence questions
 - **Attributes GCS**: Consistency on object attribute questions
@@ -158,7 +145,7 @@ def get_api_prediction(model_name: str, image_path: str, prompt: str, api_key: s
 
 ```bibtex
 @article{ghost2024,
-  title={GHOST: Evaluating Vision-Language Models on Compositional Understanding},
+  title={GHOST: Getting to the Bottom of Hallucinations with a Multi-round Consistency Benchmark},
   author={[Authors]},
   journal={[Journal/Conference]},
   year={2024}
@@ -167,5 +154,5 @@ def get_api_prediction(model_name: str, image_path: str, prompt: str, api_key: s
 
 ## License
 
-[Specify your license]
+[license]
 
