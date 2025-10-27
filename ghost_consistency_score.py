@@ -76,24 +76,3 @@ def calculate_combined_gcs(predictions: Dict) -> Dict:
         'mean_score': (sum(scores) / len(scores) * 100) if scores else 0.0,
         'num_objects': len(scores)
     }
-
-def calculate_confusion_matrix(predictions: Dict) -> Dict:
-    """Calculate confusion matrix for all predictions."""
-    counts = {'TP': 0, 'TN': 0, 'FP': 0, 'FN': 0}
-    
-    for image_data in predictions.values():
-        for obj_data in image_data.values():
-            for data_key in ['questions', 'attr', 'rel']:
-                for d in obj_data.get(data_key, {}).values():
-                    if d['label'] == 'yes':
-                        counts['TP' if d['prediction'] == 'true' else 'FN'] += 1
-                    else:
-                        counts['TN' if d['prediction'] == 'false' else 'FP'] += 1
-    
-    return counts
-
-def calculate_accuracy(cm: Dict) -> float:
-    """Calculate accuracy from confusion matrix."""
-    total = sum(cm.values())
-    return (cm['TP'] + cm['TN']) / total * 100 if total > 0 else 0.0
-

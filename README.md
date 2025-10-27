@@ -29,11 +29,6 @@ cd VLMEvalKit && pip install -e .
 python evaluate_ghost.py --pred-path predictions.json
 ```
 
-Minimal output (only GCS scores):
-```bash
-python evaluate_ghost.py --pred-path predictions.json --minimal
-```
-
 ### Generate Predictions
 
 **Local VLM:**
@@ -138,7 +133,7 @@ ghost-evaluation/
 ```python
 from evaluate_ghost import evaluate
 
-results = evaluate('predictions.json', minimal=False)
+results = evaluate('predictions.json')
 print(f"Objects GCS: {results['objects_gcs']:.2f}%")
 print(f"Attributes GCS: {results['attributes_gcs']:.2f}%")
 print(f"Relations GCS: {results['relations_gcs']:.2f}%")
